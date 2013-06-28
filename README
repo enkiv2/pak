@@ -1,0 +1,21 @@
+##################################
+# Pak -                          #
+##################################
+
+Q: What is pak?
+A: Pak is a HyperMedia Container Format, and a library in Python used for 
+manipulating such containers.
+
+Q: Why is pak?
+A: Pak exists for the sole purpose of storing hyperlink metadata in various 
+formats of media. It it a part of the Sakura HyperMedia Desktop project, an 
+effort to create a Knowledge Navigator for UNIX, which is hosted at:
+	http://sakura-os.sf.net
+
+Q: How is pak?
+A: To install, run install.sh as root. This should install the module, the 
+command link, and the documentation. You may need to edit the installer for 
+a different python version (the development system used version 2.3).
+
+Pak is (c) 2005 John Ohno, and is licensed under the GNU LGPL.
+

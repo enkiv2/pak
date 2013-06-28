@@ -1,0 +1,29 @@
+Pak Changelog
+
+9 September, 2005:
+- Pak 0.01 released
+
+31 October, 2005:
+- Commented out final except clause, thereby allowing python errors.
+- Changed the compile() to eval() in line 51 ( create() ), thus making Pak properly change the string into a dictionary.
+- Swapped the "infile" filename with its handle in line 111 ( main() ), thusly allowing pickle to load the contents of the file.
+- Changed a print statement to a conditional print/file output in main(), so that the dumped pak code can be outputted to a file.
+- Released Pak 0.02
+
+30 December, 2005:
+- Changed format to allow index positions for link targets
+- Added get_link_data and get_offset_links functions
+- Added PAK_VERSION variable
+- Removed doc/ and stuck files from there in main dir
+- Fixed linking and installation directory detection in install.sh
+- Released Pak 0.03
+
+12 January, 2006:
+- Added pak header
+- Added unpack operation
+- Added binary mode
+- Added documentation for get_offset_links function
+- Added -v option
+- Released Pak 0.04
+
+

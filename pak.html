@@ -1,0 +1,112 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pak</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/john/code/pak/pak.py">/home/john/code/pak/pak.py</a></font></td></tr></table>
+    <p><tt>Pak&nbsp;-&nbsp;a&nbsp;python-based&nbsp;HyperCard&nbsp;format<br>
+Format&nbsp;is&nbsp;based&nbsp;on&nbsp;the&nbsp;Pickle&nbsp;format,&nbsp;with&nbsp;nested&nbsp;lists&nbsp;and&nbsp;dictionaries.<br>
+Supports&nbsp;lists,&nbsp;dictionaries,&nbsp;strings,&nbsp;code,&nbsp;and&nbsp;arbitrary&nbsp;data,&nbsp;in&nbsp;an&nbsp;organized&nbsp;format.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pickle.html">pickle</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create"><strong>create</strong></a>(infile, outfile)</dt><dd><tt>Creates&nbsp;a&nbsp;pak&nbsp;from&nbsp;input&nbsp;and&nbsp;output&nbsp;files<br>
+Loads&nbsp;a&nbsp;file&nbsp;in&nbsp;the&nbsp;plaintext&nbsp;format&nbsp;of&nbsp;create_pak_dict,&nbsp;<br>
+and&nbsp;outputs&nbsp;a&nbsp;pak&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-create_pak"><strong>create_pak</strong></a>(items)</dt><dd><tt>Creates&nbsp;a&nbsp;Pak&nbsp;from&nbsp;a&nbsp;data&nbsp;structure<br>
+Should&nbsp;be&nbsp;in&nbsp;the&nbsp;following&nbsp;format:<br>
+{&nbsp;name1:{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type':type&nbsp;,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'value':value&nbsp;,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'links':{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos1:{&nbsp;card:CARD,&nbsp;bpos:BPOS,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;epos:EPOS&nbsp;}&nbsp;,&nbsp;pos2...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;name2...&nbsp;}<br>
+Where&nbsp;name*&nbsp;refers&nbsp;to&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;object,&nbsp;<br>
+value&nbsp;refers&nbsp;to&nbsp;its&nbsp;data,&nbsp;links&nbsp;refers&nbsp;to&nbsp;the&nbsp;<br>
+internal&nbsp;hyperlinks,&nbsp;and&nbsp;type&nbsp;is&nbsp;the&nbsp;data&nbsp;type,&nbsp;<br>
+one&nbsp;of&nbsp;the&nbsp;following:&nbsp;<br>
+*&nbsp;code&nbsp;-&nbsp;compiled&nbsp;python&nbsp;code<br>
+*&nbsp;text&nbsp;-&nbsp;a&nbsp;string<br>
+*&nbsp;dict&nbsp;-&nbsp;a&nbsp;dictionary<br>
+*&nbsp;list&nbsp;-&nbsp;a&nbsp;list<br>
+*&nbsp;html&nbsp;-&nbsp;an&nbsp;html/xml/etc.&nbsp;(i.e.&nbsp;web-type)&nbsp;file<br>
+*&nbsp;data&nbsp;-&nbsp;some&nbsp;kind&nbsp;of&nbsp;data&nbsp;accessed&nbsp;by&nbsp;code&nbsp;<br>
+inside&nbsp;the&nbsp;pak&nbsp;or&nbsp;an&nbsp;outside&nbsp;program<br>
+pos*&nbsp;refers&nbsp;to&nbsp;a&nbsp;hash&nbsp;of&nbsp;slices,&nbsp;in&nbsp;the&nbsp;form&nbsp;of&nbsp;<br>
+'start:end',&nbsp;which&nbsp;represents&nbsp;the&nbsp;start&nbsp;and&nbsp;<br>
+end&nbsp;positions&nbsp;of&nbsp;the&nbsp;link&nbsp;in&nbsp;the&nbsp;data.</tt></dd></dl>
+ <dl><dt><a name="-create_pak_dict"><strong>create_pak_dict</strong></a>(items)</dt><dd><tt>Creates&nbsp;a&nbsp;dictionary&nbsp;suitable&nbsp;for&nbsp;create_pak<br>
+Input&nbsp;is&nbsp;like&nbsp;that&nbsp;of&nbsp;create_pak&nbsp;,&nbsp;except&nbsp;that&nbsp;the&nbsp;<br>
+key&nbsp;for&nbsp;value&nbsp;is&nbsp;a&nbsp;filename&nbsp;containing&nbsp;the&nbsp;data&nbsp;to&nbsp;<br>
+be&nbsp;read&nbsp;into&nbsp;it<br>
+Also&nbsp;creates&nbsp;a&nbsp;header&nbsp;(the&nbsp;card&nbsp;named&nbsp;'.header'),<br>
+a&nbsp;dictionary&nbsp;whose&nbsp;possible&nbsp;key&nbsp;values&nbsp;are&nbsp;as&nbsp;<br>
+follows:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;value&nbsp;of&nbsp;PAK_VERSION<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(for&nbsp;backwards&nbsp;compatibility)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''&nbsp;for&nbsp;ascii,&nbsp;'b'&nbsp;for&nbsp;binary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key_num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;keys<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pakker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;program&nbsp;name/vendor/version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'pak'&nbsp;means&nbsp;it&nbsp;is&nbsp;made&nbsp;by&nbsp;the&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;official&nbsp;library&nbsp;(this&nbsp;module)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;index&nbsp;page&nbsp;(like&nbsp;on&nbsp;a&nbsp;web<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;site).&nbsp;Currently,&nbsp;there&nbsp;is&nbsp;no&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;way&nbsp;to&nbsp;change&nbsp;this&nbsp;from&nbsp;the&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;line,&nbsp;so&nbsp;you&nbsp;need&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accept&nbsp;the&nbsp;default&nbsp;of&nbsp;'index'<br>
+&nbsp;<br>
+Note:&nbsp;files&nbsp;with&nbsp;data_mode=='b'&nbsp;are&nbsp;encoded&nbsp;using&nbsp;<br>
+the&nbsp;python&nbsp;struct&nbsp;module.&nbsp;The&nbsp;format&nbsp;is&nbsp;a&nbsp;little-<br>
+endian&nbsp;unsigned&nbsp;byte&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-create_pak_file"><strong>create_pak_file</strong></a>(items, file)</dt><dd><tt>Creates&nbsp;a&nbsp;Pak&nbsp;file&nbsp;from&nbsp;data&nbsp;structure<br>
+Calls&nbsp;create_pak</tt></dd></dl>
+ <dl><dt><a name="-get_link"><strong>get_link</strong></a>(items, name, pos)</dt><dd><tt>Finds&nbsp;the&nbsp;links&nbsp;for&nbsp;position&nbsp;pos&nbsp;in&nbsp;card&nbsp;name&nbsp;in&nbsp;pak&nbsp;items<br>
+Looks&nbsp;it&nbsp;up&nbsp;in&nbsp;the&nbsp;dictionary&nbsp;and&nbsp;checks&nbsp;for&nbsp;whether&nbsp;each&nbsp;link&nbsp;<br>
+found&nbsp;overlaps&nbsp;with&nbsp;pos</tt></dd></dl>
+ <dl><dt><a name="-get_link_data"><strong>get_link_data</strong></a>(items, name, pos)</dt><dd><tt>Gets&nbsp;all&nbsp;data&nbsp;linked&nbsp;to&nbsp;by&nbsp;a&nbsp;certain&nbsp;link,&nbsp;if&nbsp;it&nbsp;exists<br>
+Finds&nbsp;the&nbsp;link&nbsp;name&nbsp;and&nbsp;position&nbsp;using&nbsp;get_link,&nbsp;and&nbsp;then&nbsp;<br>
+finds&nbsp;the&nbsp;data&nbsp;and&nbsp;returns&nbsp;it,&nbsp;with&nbsp;markers.<br>
+The&nbsp;returned&nbsp;data&nbsp;is&nbsp;in&nbsp;the&nbsp;following&nbsp;format:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;name1:{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'backlink':{&nbsp;'card':CARD,&nbsp;'bpos':BPOS,&nbsp;'epos':EPOS&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'value':VALUE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'links':{&nbsp;pos1:{&nbsp;'card':CARD,&nbsp;'bpos':BPOS,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'epos':EPOS&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos2...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name2...&nbsp;}<br>
+backlink&nbsp;contains&nbsp;the&nbsp;data&nbsp;for&nbsp;where&nbsp;the&nbsp;link&nbsp;came&nbsp;from.&nbsp;BPOS&nbsp;and&nbsp;<br>
+EPOS&nbsp;are&nbsp;beginning&nbsp;and&nbsp;ending&nbsp;positions,&nbsp;respectively.</tt></dd></dl>
+ <dl><dt><a name="-get_offset_links"><strong>get_offset_links</strong></a>(items, name, bpos, epos)</dt><dd><tt>Gets&nbsp;the&nbsp;data&nbsp;slices&nbsp;that&nbsp;a&nbsp;link&nbsp;links&nbsp;to<br>
+Also&nbsp;formats&nbsp;the&nbsp;backlinks&nbsp;to&nbsp;make&nbsp;them&nbsp;point&nbsp;to&nbsp;the&nbsp;right&nbsp;place</tt></dd></dl>
+ <dl><dt><a name="-get_value"><strong>get_value</strong></a>(items, name)</dt><dd><tt>Gets&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;card&nbsp;name&nbsp;in&nbsp;the&nbsp;pak&nbsp;items<br>
+Looks&nbsp;it&nbsp;up&nbsp;in&nbsp;the&nbsp;dictionary.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>PAK_VERSION</strong> = '0.04'<br>
+<strong>data_mode</strong> = ''</td></tr></table>
