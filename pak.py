@@ -255,5 +255,5 @@ Licensed under the GNU LGPL
 		except IOError:
 			print ("An IO exception has occurred while unpacking. Check your files, directories, and permissions.")
 			sys.exit(-1)
-if sys.argv[0].find("pak") != -1:
+if __name__=="__main__":
 	main()
