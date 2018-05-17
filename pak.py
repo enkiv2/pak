@@ -165,9 +165,7 @@ def main():
 	infile=""
 	outfile=""
 	operation=""
-	print (sys.argv)
 	sys.argv.pop(0)
-	print (sys.argv)
 	for x in sys.argv:
 		if x == "-if":
 			infile=sys.argv[sys.argv.index(x) + 1]
@@ -199,7 +197,7 @@ Options:
 -u		UnPAK file
 -b		Binary format
 
-(c) 2006 John Ohno
+(c) 2006-2018 John Ohno
 Licensed under the GNU LGPL
 """)
 			sys.exit(0)
