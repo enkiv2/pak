@@ -165,9 +165,9 @@ def main():
 	infile=""
 	outfile=""
 	operation=""
-	print sys.argv
+	print (sys.argv)
 	sys.argv.pop(0)
-	print sys.argv
+	print (sys.argv)
 	for x in sys.argv:
 		if x == "-if":
 			infile=sys.argv[sys.argv.index(x) + 1]
@@ -182,10 +182,10 @@ def main():
 		elif x == '-u':
 			operation='unpak'
 		elif x == '-v':
-			print PAK_VERSION
+			print (PAK_VERSION)
 			sys.exit(0)
 		elif x == "-h" or x == "--help":
-			print """ pak - the python hypercard format utility
+			print (""" pak - the python hypercard format utility
 Usage:
 	pak [ -h ] | [ -v ] | [ [ -if FILE ] [ -of FILE ] [ -c | -d | -u ]  
 		[ -b ] ]
@@ -201,16 +201,16 @@ Options:
 
 (c) 2006 John Ohno
 Licensed under the GNU LGPL
-"""
+""")
 			sys.exit(0)
 	if operation=="":
-		print "pak: could not determine operation! Please try pak -h for usage details"
+		print ("pak: could not determine operation! Please try pak -h for usage details")
 		sys.exit(-1)
 	elif operation=="create":
 		try:
 			create(infile, outfile)
 		except IOError:
-			print "An IO exception occurred while creating the PAK. Check your files and permissions."
+			print ("An IO exception occurred while creating the PAK. Check your files and permissions.")
 			sys.exit(-1)
 #		except:
 #			print "An unknown error has occurred while creating the PAK! Dying..."
@@ -225,12 +225,12 @@ Licensed under the GNU LGPL
 				#
 			#
 			if (outfile==""):
-				print x
+				print (x)
 			else:
 				o=open(outfile, 'w')
 				o.write(str(x))
 		except IOError:
-			print "An IO exception occurred while dumping. Check your files and permissions."
+			print ("An IO exception occurred while dumping. Check your files and permissions.")
 #		except:
 #			print "An unknown error has occurred while dumping! Dying..."
 			sys.exit(-1)
@@ -247,14 +247,14 @@ Licensed under the GNU LGPL
 					x[item]['value']=struct.unpack(x[item]['.fmt'], x[item]['value'])
 				#
 			for item in x.keys():
-				print item
+				print (item)
 				temp=open(path+item, 'w'+data_mode)
 				if 'type' in x[item]:
 					if x[item]['type']!='data':
 						temp.write(str(x[item]['value']))
 					#
 					else:
-						print "Type existed and == 'data'."
+						print ("Type existed and == 'data'.")
 						temp.write(x[item]['value'])
 				else:
 					temp.write(x[item]['value'])
@@ -266,7 +266,7 @@ Licensed under the GNU LGPL
 				#
 			#
 		except IOError:
-			print "An IO exception has occurred while unpacking. Check your files, directories, and permissions."
+			print ("An IO exception has occurred while unpacking. Check your files, directories, and permissions.")
 			sys.exit(-1)
 		#
 	#
