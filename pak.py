@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" Pak - a python-based HyperCard format
+""" Pak - a python-based Hypermedia Card format
 Format is based on the Pickle format, with nested lists and dictionaries.
 Supports lists, dictionaries, strings, code, and arbitrary data, in an organized format.
 """
@@ -183,7 +183,7 @@ def main():
 			print (PAK_VERSION)
 			sys.exit(0)
 		elif x == "-h" or x == "--help":
-			print (""" pak - the python hypercard format utility
+			print (""" pak - the python hypermedia card format utility
 Usage:
 	pak [ -h ] | [ -v ] | [ [ -if FILE ] [ -of FILE ] [ -c | -d | -u ]  
 		[ -b ] ]
