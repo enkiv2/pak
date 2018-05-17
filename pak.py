@@ -212,8 +212,6 @@ Licensed under the GNU LGPL
 		except IOError:
 			print ("An IO exception occurred while creating the PAK. Check your files and permissions.")
 			sys.exit(-1)
-#		except:
-#			print "An unknown error has occurred while creating the PAK! Dying..."
 	elif operation=="dump":
 		try:
 			i=open(infile)
@@ -222,8 +220,6 @@ Licensed under the GNU LGPL
 			if data_mode=='b':
 				for item in x.keys:
 					x[item]['value']=struct.unpack('<'+x[item]['.fmt']+'B', x[item]['value'])
-				#
-			#
 			if (outfile==""):
 				print (x)
 			else:
@@ -231,10 +227,7 @@ Licensed under the GNU LGPL
 				o.write(str(x))
 		except IOError:
 			print ("An IO exception occurred while dumping. Check your files and permissions.")
-#		except:
-#			print "An unknown error has occurred while dumping! Dying..."
 			sys.exit(-1)
-		#
 	elif operation=="unpak":
 		try:
 			i=open(infile)
@@ -245,14 +238,12 @@ Licensed under the GNU LGPL
 			if data_mode=='b':
 				for item in x.keys():
 					x[item]['value']=struct.unpack(x[item]['.fmt'], x[item]['value'])
-				#
 			for item in x.keys():
 				print (item)
 				temp=open(path+item, 'w'+data_mode)
 				if 'type' in x[item]:
 					if x[item]['type']!='data':
 						temp.write(str(x[item]['value']))
-					#
 					else:
 						print ("Type existed and == 'data'.")
 						temp.write(x[item]['value'])
@@ -263,12 +254,8 @@ Licensed under the GNU LGPL
 					temp=open(path+item+'.__links__', 'w')
 					temp.write(str(x[item]['links']))
 					temp.close()
-				#
-			#
 		except IOError:
 			print ("An IO exception has occurred while unpacking. Check your files, directories, and permissions.")
 			sys.exit(-1)
-		#
-	#
 if sys.argv[0].find("pak") != -1:
 	main()
